@@ -6,8 +6,9 @@ import org.junit.jupiter.api.Test;
 public class PerimeterTests {
 
     @Test
-    void checkSquare() {
-        double result = Triangle.perimeterOfTriangle(4.0, 5.0, 5.0);
+    void checkTriangle() {
+        Triangle triangle = new Triangle();
+        double result = triangle.CalculatePerimeterTriangle(4, 5, 5);
         Assertions.assertEquals(14.0, result);
     }
 }

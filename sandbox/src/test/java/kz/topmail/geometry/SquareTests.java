@@ -7,7 +7,8 @@ public class SquareTests {
 
     @Test
     void checkSquare() {
-        double result = Triangle.squareOfTriangle(4.0, 5.0, 5.0);
+        Triangle triangle = new Triangle();
+        double result = triangle.CalculateSquareTriangle(4, 5, 5);
         Assertions.assertEquals(3.0, result);
     }
 
