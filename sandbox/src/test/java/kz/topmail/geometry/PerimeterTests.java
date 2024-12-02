@@ -12,4 +12,15 @@ public class PerimeterTests {
         double result = triangle.perimeter();
         Assertions.assertEquals(14.0, result);
     }
+
+    @Test
+    void checkTriangleSide () {
+        try {
+            new Triangle(4., 5., -5.);
+            Assertions.fail();
+        } catch (IllegalArgumentException exception) {
+//        OK
+        }
+    }
+
 }
