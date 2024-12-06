@@ -48,8 +48,9 @@ public class Triangle {
         Triangle triangle = (Triangle) o;
         return Double.compare(triangle.side1, this.side1) == 0 && Double.compare(triangle.side2, this.side2) == 0 && Double.compare(triangle.side3, this.side3) == 0
                 || Double.compare(triangle.side1, this.side2) == 0 && Double.compare(triangle.side2, this.side3) == 0 && Double.compare(triangle.side3, this.side1) == 0
-                || Double.compare(triangle.side1, this.side3) == 0 && Double.compare(triangle.side2, this.side1) == 0 && Double.compare(triangle.side3, this.side2) == 0;
-
+                || Double.compare(triangle.side1, this.side3) == 0 && Double.compare(triangle.side2, this.side1) == 0 && Double.compare(triangle.side3, this.side2) == 0
+                || Double.compare(triangle.side1, this.side1) == 0 && Double.compare(triangle.side2, this.side3) == 0 && Double.compare(triangle.side3, this.side2) == 0
+                ||Double.compare(triangle.side1, this.side3) == 0 && Double.compare(triangle.side2, this.side2) == 0 && Double.compare(triangle.side3, this.side1) == 0;
     }
 
     @Override
