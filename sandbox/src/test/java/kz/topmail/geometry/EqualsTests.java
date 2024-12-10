@@ -8,7 +8,7 @@ public class EqualsTests {
     @Test
     void checkTriangleEquality() {
         Triangle triangle = new Triangle(4., 5., 5.);
-        Triangle triangle1 = new Triangle(5., 5., 4.);
+        Triangle triangle1 = new Triangle(4., 5., 5.);
         Assertions.assertEquals(triangle, triangle1);
     }
 }
