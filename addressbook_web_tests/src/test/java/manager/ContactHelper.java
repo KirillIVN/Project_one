@@ -16,9 +16,9 @@ public class ContactHelper extends HelperBase {
         }
     }
 
-    public boolean isContactPresent() {
+    public int getCountContact() {
         openContactPage();
-        return manager.isElementPresent(By.name("selected[]"));
+        return manager.driver.findElements(By.name("selected[]")).size();
     }
 
     public void createContact(ContactData contact) {

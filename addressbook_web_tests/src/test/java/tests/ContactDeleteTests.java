@@ -7,7 +7,7 @@ public class ContactDeleteTests extends TestBase {
 
     @Test
     public void deleteContactTest() {
-        if (!app.contacts().isContactPresent()) {
+        if (app.contacts().getCountContact() == 0) {
             app.contacts().createContact(new ContactData("name1", "name2"));
         }
         app.contacts().removeContact();
