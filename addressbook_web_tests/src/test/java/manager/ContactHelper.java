@@ -4,6 +4,9 @@ package manager;
 import model.ContactData;
 import org.openqa.selenium.By;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ContactHelper extends HelperBase {
 
     public ContactHelper(ApplicationManager manager) {
@@ -28,17 +31,17 @@ public class ContactHelper extends HelperBase {
         submitContactCreation();
         returnToHomePage();
     }
-    public void removeContact() {
+    public void removeContact(ContactData contact) {
         openContactPage();
         returnToHomePage();
-        selectContact();
+        selectContact(contact);
         removeSelectedContact();
     }
 
-    public void modifyContact(ContactData modifiedName) {
+    public void modifyContact(ContactData contact, ContactData modifiedName) {
         openContactPage();
-        selectContact();
-        contactModification();
+        selectContact(contact);
+        contactModification(contact);
         fillContact(modifiedName);
         submitContact();
         returnToHomePage();
@@ -69,12 +72,27 @@ public class ContactHelper extends HelperBase {
         type(By.name("lastname"), contact.name2());
     }
 
-    private void contactModification() {
-        click(By.xpath("//*[@id=\"maintable\"]/tbody/tr[2]/td[8]/a"));
+    private void contactModification(ContactData contact) {
+        var edit = manager.driver.findElement(By.xpath(String.format("//a[@href='edit.php?id=%s']", contact.id())));
+        edit.click();
     }
 
-    private void selectContact() {
-        click(By.name("selected[]"));
+    private void selectContact(ContactData contact) {
+        click(By.cssSelector(String.format("input[value='%s']", contact.id())));
     }
 
+    public List<ContactData> getList() {
+        openContactPage();
+        var contacts = new ArrayList<ContactData>();
+        var trs = manager.driver.findElements(By.name("entry"));
+        for (var tr : trs) {
+            var td = tr.findElements(By.tagName("td"));
+            var id = String.valueOf(Integer.parseInt(td.get(0).findElement(By.cssSelector("input[type='checkbox']"))
+                    .getDomAttribute("value")));
+            var lastname = td.get(1).getText();
+            var firstname  = td.get(2).getText();
+            contacts.add(new ContactData().withId(id).withFirstName(firstname).withSecondName(lastname));
+        }
+        return contacts;
+    }
 }
